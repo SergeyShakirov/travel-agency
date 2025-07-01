@@ -18,6 +18,12 @@ const customJestConfig = {
     '!src/**/*.d.ts',
     '!src/app/layout.tsx',
   ],
+  // Fix Jest haste module naming collision
+  modulePathIgnorePatterns: ['<rootDir>/.next/'],
+  transformIgnorePatterns: [
+    '/node_modules/',
+    '^.+\\.module\\.(css|sass|scss)$',
+  ],
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
