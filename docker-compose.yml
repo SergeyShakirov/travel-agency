@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  eurowork-app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - eurowork-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - eurowork-app
+    restart: unless-stopped
+    networks:
+      - eurowork-network
+
+networks:
+  eurowork-network:
+    driver: bridge
+
+volumes:
+  logs:
