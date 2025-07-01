@@ -119,11 +119,11 @@ chmod -R 755 /var/www/travel-agency
 # Переход в директорию проекта
 cd /var/www/travel-agency
 
-# Установка зависимостей (production only)
-npm ci --only=production
+# Установка ВСЕХ зависимостей (включая dev для сборки)
+npm ci
 
-# Или если нужны dev зависимости для сборки
-npm install
+# Проверка установки Tailwind CSS
+npm list tailwindcss
 ```
 
 ### 5.2 Сборка для production
@@ -133,6 +133,9 @@ npm run build
 
 # Проверка сборки
 ls -la .next/
+
+# Очистка dev зависимостей после сборки (экономия места)
+npm ci --only=production
 ```
 
 ---

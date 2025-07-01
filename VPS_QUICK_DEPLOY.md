@@ -51,8 +51,12 @@ cd travel-agency
 
 ### 5. Соберите проект:
 ```bash
-npm ci --only=production
+# Устанавливаем ВСЕ зависимости (включая dev для сборки)
+npm ci
 npm run build
+
+# Очищаем dev зависимости после сборки (опционально)
+npm ci --only=production
 ```
 
 ### 6. Запустите через PM2:
